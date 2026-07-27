@@ -20,6 +20,10 @@ app.use(cookies({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.get("/", (req, res) => {
+    res.redirect("/android-stereo");
+});
+
 // ejs engin
 app.set("view engine", "ejs"); 
 app.use("/android-stereo", Router);
