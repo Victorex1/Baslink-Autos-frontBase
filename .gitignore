@@ -1,0 +1,5 @@
+# Dependencies (NEVER upload node_modules to GitHub)
+node_modules/
+
+# Environment Variables (Keeps your database keys secret)
+.env

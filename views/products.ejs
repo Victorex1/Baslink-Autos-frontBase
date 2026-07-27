@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partial/head') %>
+  <body>
+   <%- include('../partial/nav') %>
+    <div class="flex flex-col justify-center items-center w-full">
+      <section
+        class="bg-[url('/blogbg.png')] text-white flex justify-center bg-no-repeat bg-center bg-cover p-2 px-8 w-full  sm:h-60 "
+      >
+        <div class="w-full lg:w-[1024px]">
+          <h1 class="text-[25px] sm:text-[40px] md:text-[50px]">
+            All Products
+          </h1>
+          <div
+            class="text-[10px] sm:text-[15px] md:text-[20px] text-gray-200 my-2"
+          >
+            <a href="/android-stereo/home-page"> Home page </a> &gt;
+            <a href="/contact-page"> Products</a>
+          </div>
+          <p
+            class="text-[12px] sm:text-[16px] text-gray-100 w-[190px] sm:w-[290px]  lg:text-[16px]  lg:w-[340px]"
+          >
+            Explore our wide range of premium car stereos and audio accessories
+          </p>
+          <div class="flex items-center">
+            <select
+              name=""
+              id="filter"
+              class="text-[10px] cursor-pointer hover:bg-blue-700 my-2 p-2 bg-[#0d2b4d] w-30 rounded-md border border-gray-500 lg:hidden"
+            >
+              <option value="All Products">
+                <i class="bi bi-funnel"></i>
+                All products
+              </option>
+              <option value="Android">car Androids</option>
+              <option value="Speaker">Speakers and Audio</option>
+              <option value="Camera">Cameras</option>
+              <option value="Camera">Jump Start</option>
+              <option value="Camera">Water Pump</option>
+              <option value="others">Others</option>
+            </select>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="w-screen bg-gray-100 flex justify-center">
+
+      <section class="w-full  xl:max-w-[1500px] p-2 ">
+        <div class="lg:flex gap-5">
+          <div class="p-3 border border-gray-200 rounded-md basis-1/5 bg-white hidden lg:block">
+            <h2 class="font-bold my-2 text-[14px]">Categories</h2>
+            <div>
+              <a href="/android-stereo/product-page"><p class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 " >All Products</p></a>
+              <p id="android" data-android="Android" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Android</p>
+              <p id="speaker" data-speaker="Speaker" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Speakers</p>
+              <p id="camera" data-camera="Camera" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Cameras</p>
+              <p id="jump-start" data-camera="Camera" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Jump Start</p>
+              <p id="pump" data-camera="Camera" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Water Pump</p>
+              <p id="others" data-others="Other" class=" text-gray-600 text-[10px] rounded-md border-l-4 cursor-pointer border-white hover:bg-blue-100 action:text-blue-600 action:border-blue-600 px-2 p-1 ">Others</p>
+            </div>
+
+          </div>
+          <div class="w-full flex flex-wrap  basis-4/5">
+            <div id="product-box" class="w-full flex flex-col phone2:flex-row flex-wrap  gap-2 justify-center items-center ">
+              <h2 id="loading" class='text-xl my-10 text-gray-400'><b>Loading...</b></h2>
+            <% if(datas && datas.length > 0){%>
+              <% datas.forEach( data => {%>
+              <div  id="box-container"
+                class="rounded-md border border-gray-300 bg-white p-2 flex justify-between gap-2  my-1 phone2:flex-col  phone2:items-center">
+                <div class="w-18 rounded-md overflow-hidden">
+                  <img
+                    src=<%= data.GoodsImage%>
+                    alt=""
+                    class="w-full h-full hover:scale-110"
+                  />
+                </div>
+                <div class="w-35">
+                  <p class="font-bold text-[10px] ">
+                    <%= data.GoodsName%>
+                  </p>
+                  <div class="my-2 text-[9px] flex gap-3 items-center font-bold">
+                    <p class="text-blue-600 ">
+                      <i class="fa-solid fa-naira-sign"></i>₦ <%= (data.price).toLocaleString() %>
+                    </p>
+                    <p class="text-gray-400 font-bold"><strike>40,000</strike></p>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <a href="/android-stereo/productDetail-page/<%= data.id%>"
+                      class="p-1 cursor-pointer rounded-md border hover:bg-blue-600 hover:text-white border-gray-500 font-bold text-blue-600 text-[9px]"
+                    >
+                      View Details
+                  </a>
+                    <button
+                      class="p-1 cursor-pointer rounded-md border border-gray-500 text-black  text-[10px] hover:text-blue-600 hover:border-blue-600"
+                    >
+                      <i class="fa-regular fa-heart"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <% })%>
+            <% }else{%>
+               <div id="empty-box" class="rounded-md border-dashed border-gray-500 p-2 flex justify-between gap-2  my-1 phone2:flex-col  phone2:items-center">
+                <img src="/box.png" class="w-[60px] md:w-[80px]" alt="">                
+                <h2 class="font-bold text-[15px]  text-gray-500 my-2">No item to be displayed</h2>
+              </div>
+              <%}%>
+            </div>
+
+            <div class="w-full my-1">
+              <div id="count" class="flex justify-center gap-3 items-center">
+              <% if(count){%>
+                <% for(let i = 1; i < count+1; i++){%>
+                <p id="pages" class=" text-[13px] cursor-pointer  p-2 border border-gray-400  hover:bg-gray-200 font-bold rounded-md mx-2"
+                ><%= i%></p>
+              <% } %>
+              <% } %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class=" w-full bg-blur-100 p-2 lg:flex text-[13px] border border-gray-200 rounded-md justify-between " >
+
+            <div class="flex items-center gap-2 p-5 ">
+                <i class="fa-solid fa-retweet text-[1.1rem] mr-5 text-blue-600"></i>
+                <div >
+                    <p class="font-bold mb-2 ">Easy Returns</p>
+                    <p class="text-gray-600 ">30-days money back garanty</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 p-5">
+                <i class="bi bi-shield-check text-[1.1rem] mr-5 text-blue-600"></i>
+                <div >
+                    <p class="font-bold ">1 Year warranty </p>
+                    <p class="text-gray-600 ">on all Products</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 p-5 ">
+                <i class="bi bi-briefcase  mr-5 text-[1.1rem] text-blue-600"></i>
+                <div >
+                    <p class="font-bold mb-2 ">Secure Checkout</p>
+                    <p class="text-gray-600 ">100% secure payment</p>
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+
+    <%- include('../partial/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/product.js"></script>
+
+  </body>
+</html>

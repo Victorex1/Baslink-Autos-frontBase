@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partial/head') %>
+
+  <body class="w-screen h-screen">
+    <div class="sitebody w-full relative">
+      <header class="w-full h-70 bg-[#040d17] p-5 md:px-13">
+      <%- include('../partial/nav') %>
+      </header>
+
+      <div class="flex justify-center items-center  w-full bg-gray-200">
+      <section class="w-full sm:w-[767px] md:w-[900px] p-2 flex flex-col items-center"
+      >
+        <div class=" w-full relative flex flex-col items-center">
+          <section class=" absolute -top-40 w-9/10 ">
+           <div class="w-full h-26 md:h-30 flex flex-col">
+            <div class="flex phone3:justify-center md:mb-3 h-md">
+              <div class="text-white mx-2 md:w-2/5">
+                <p class="text-[12px] font-bold">
+                  Upgrade your car today with our smart Android system
+                </p>
+                <p class="text-[10px] my-2 text-gray-400">
+                  click the button now and grab your deal!
+                </p>
+              </div>
+              <a href="/android-stereo/product-page" class="p-1 bg-blue-600 cursor-pointer text-[10px] hover:bg-blue-400 action:scale-95 h-[35px] w-[120px] rounded-sm flex justify-center items-center text-white font-bold">
+                ORDER NOW
+
+              </a>
+              </button>
+            </div>
+
+            <div>
+              <div class="flex mt-4 md:mt-1 justify-center md:ml-3">
+                <div class="flex">
+                  <i
+                    class="fa-solid fa-shield-halved w-[30px] text-blue-600 md:mr-5 text-2xl"
+                  ></i>
+                  <div class="text-white text-[12px]">
+                    <p
+                      class="font-bold text-[10px] md:text-[12px]"
+                    >
+                      1 Year Warranty
+                    </p>
+                    <p class="text-gray-500 ">
+                      Quality product you can trust
+                    </p>
+                  </div>
+                </div>
+                <div class="h-[40px] w-[1px] bg-gray-700 mx-5"></div>
+                <div class="flex">
+                  <i
+                    class="fa-solid fa-headset text-blue-600 w-[30px] md:mr-5 text-2xl"
+                  ></i>
+                  <div class="text-white text-xs">
+                    <p
+                      class="font-bold text-[10px] md:text-[12px]"
+                    >
+                      Export Support
+                    </p>
+                    <p
+                      class="text-gray-500"
+                    >
+                      We're here to help
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="w-full shadow-sm my-3 md:my-1 h-50 sm:h-50 md:h-100 rounded-2xl overflow-hidden"
+          >
+            <img src="/car3.png" class="w-full h-full" alt="" />
+          </div>
+          </section>
+
+
+          <div class="w-full mt-43 phone4:mt-43 md:mt-100">
+            <h3 class="font-bold text-[13px] xl:text-[18px] uppercase">
+              Poppular Upgrades For Your Vehicle 
+            </h3>
+            <div class="w-full flex justify-center flex-wrap my-2 lg:my-1 py-2">
+              <h2 id="loading" class='text-xl my-10 text-gray-400'><b>Loading...</b></h2>
+
+              <% if(datas && datas.length > 0){ %>
+                 <% datas.forEach(data => { %>
+              <div id="box-container"
+                class="py-5 px-4 m-1 shadow-xl bg-white w-40 rounded-xs flex flex-col items-center"
+              >
+                <div
+                  class="w-25 h-15 flex justify-center items-center rounded-md overflow-hidden"
+                >
+                  <img
+                    src=<%= data.GoodsImage %>
+                    class="w-full h-full hover:scale-120"
+                    alt=" car android"
+                  />
+                </div>
+                <div class="flex flex-col items-center">
+                  <p class="font-bold text-center text-[10px]">
+                    <%= data.GoodsName%>
+                  </p>
+                  <p class="font-bold text-[11px]">From ₦<%= (data.price).toLocaleString() %></p>
+                </div>
+
+                <button
+                  class="bg-blue-500 hover:bg-blue-400 p-1 cursor-pointer text-xs px-4 rounded-sm text-white font-bold my-1"
+                >
+                  View Details
+                </button>
+              </div>
+                <% })%>
+                
+               <% }else{%>
+
+               <div id="empty-box" class="rounded-md border-dashed border-gray-500 p-2 flex justify-between gap-2  my-1 phone2:flex-col  phone2:items-center">
+                <img src="/box.png" class="w-[60px] md:w-[80px]" alt="">                
+                <h2 class="font-bold text-[15px]  text-gray-500 my-2">No item to be displayed</h2>
+              </div>
+               <% } %>
+
+            </div>
+          </div>
+
+          <div
+            class="bg-[url('/bgstyle.webp')] bg-no-repeat bg-cover bg-center text-white w-full my-2 lg:my-1 flex flex-col items-center justify-center rounded-sm py-3 px-4"
+          >
+            <h2 class="font-bold my-1 text-xs md:text-[15px] ">
+              Need Help Choosing ?
+            </h2>
+            <p class="text-[10px] md:text-[15px]">
+              Our experts are here to help you find the perfect fit for your
+              car.
+            </p>
+            <a
+              href="/android-stereo/contact-page"
+              class="p-1 md:p-2 text-[12px] md:text-[15px] action:scale-95 rounded-md hover:bg-blue-500 bg-blue-600 font-bold my-2"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </section>
+      </div>
+
+    <%- include('../partial/footer') %>
+      <div
+        class="newsbody hidden w-full phone2:w-[80%] phone3:w-[50%] phone4:w-[40%] fixed z-11 bg-[#040d17] mx-3 left-0 bottom-5 border border-gray-500 rounded-md p-3 md:p-4 text-white"
+      >
+        <div class="flex justify-between text-[12px]">
+          <h3 class="font-bold my-2 ">Newsletter</h3>
+          <div
+            class="closeNews p-2 hover:bg-gray-700 md:mx-7 cursor-pointer flex justify-center items-center rounded-xl"
+          >
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
+        <p class="text-gray-200 w-60 text-[10px] md:my-">
+          Subscribe to our newsletter and be the first to get exclusive deals,
+          latest updates, and special offers you don’t want to miss.
+        </p>
+        <button
+          class="confirmsub w-20 p-1 text-[10px] cursor-pointer action:scale-95 mt-4 border-none bg-blue-600 text-white flex justify-center items-center rounded-md"
+        >
+          Subscribe
+        </button>
+      </div>
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partial/head') %>
+
+<body>
+   <%- include('../partial/nav') %>
+    
+
+
+   <div class="w-screen  flex justify-center bg-gray-100">
+    <div class="w-full p-3  flex flex-col items-center lg:flex-row lg:items-start md:basis-[1000px] " >
+
+ <div class="w-full md:basis-2/3 mx-3">
+    <h2 class="font-bold m-2 my-3 text-[20px]">Product-Cart</h2>
+    
+<div class="max-w-4xl mx-auto p-4 bg-gray-50 rounded-lg shadow-sm">
+  
+  <!-- 1. HEADER ROW: Hidden on mobile (hidden), visible from small screens up (sm:grid) -->
+  <div class="hidden sm:grid grid-cols-12 gap-4 pb-2 border-b border-gray-300 font-bold text-xs text-gray-700 tracking-wide">
+    <div class="col-span-6">Product Details</div>
+    <div class="col-span-2 text-right">Unit Price</div>
+    <div class="col-span-2 text-center">Quantity</div>
+    <div class="col-span-2 text-right">Total</div>
+  </div>
+    
+<div>
+    <h2 id="loading" class='text-xl my-10 text-gray-400'><b>Loading...</b></h2>
+<div id="cartItem">
+  <%if(data && data.length > 0){%>
+    <%data.forEach( result => {%>
+      
+  <div id="box-container" data-item-id="<%= result.id %>" class="cart-item flex flex-col sm:grid sm:grid-cols-12 gap-2 items-center py-4 border-b border-gray-200 text-xs text-gray-900 font-medium bg-white p-4 sm:px-2 mt-1 rounded-md shadow-sm relative transform transition-all duration-500 opacity-100 ease-in-out scale-100">
+  
+    <!-- Column 1: Product Details (Image + Titles) -->
+    <div class="w-full sm:col-span-6 flex items-center gap-3">
+      <div class="w-16 h-12 bg-gray-100 rounded overflow-hidden flex-shrink-0 border border-gray-200">
+        <img src="<%= result.image%>" alt="item img" class="w-full h-full object-cover" />
+      </div>
+      <div class="leading-tight">
+        <p class="font-bold text-gray-900 text-[13px]"><%= result.name%></p>
+        <p class="text-gray-500 text-[11px] font-normal mt-0.5"><%= result.model%></p>
+      </div>
+    </div>
+
+    <!-- Mobile Price & Quantity Row Holder -->
+    <div class="w-full sm:w-auto flex justify-between items-center mt-3 sm:mt-0 sm:contents border-t border-dashed border-gray-100 pt-3 sm:pt-0">
+      
+      <!-- Column 2: Unit Price -->
+      <div class="sm:col-span-2 text-left sm:text-right font-bold text-gray-800 text-[13px]">
+        <span class="inline sm:hidden text-gray-400 font-normal text-xs">Price: </span>₦<span class="unit-price" data-price="<%= result.price %>"><%= (result.price).toLocaleString()%></span>
+      </div>
+
+      <!-- Column 3: Quantity Input -->
+      <div class="sm:col-span-2 flex justify-center">
+        <input 
+          type="number" 
+          value="<%= result.qnt%>" 
+          min="1" 
+          data-id="<%= result.id %>"
+          class="quantity-input w-12 h-8 text-center bg-gray-50 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 font-semibold"
+        />
+      </div>
+
+      <!-- Column 4: Total Cost Box Calculation -->
+      <div class="sm:col-span-2 text-right font-bold text-blue-600 sm:text-gray-800 text-[13px]">
+        <span class="inline sm:hidden text-gray-400 font-normal text-xs">Total: </span>
+        <span class="total-display">₦<%= (result.price * result.qnt).toLocaleString() %></span>
+      </div>
+    </div>
+
+    <!-- Column 5: Delete Button -->
+    <div class="cursor-pointer absolute top-3 right-3 sm:relative sm:top-auto sm:right-auto sm:col-span-1 flex justify-center">
+      <button id="<%= result.id%>" class="delete-btn text-red-500 hover:text-red-700 transition p-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="pointer-events-none w-4 h-4">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+    <%})%>
+  <%}else{%>
+    <div id="empty-box" class="rounded-md border-dashed border-gray-500 p-2 flex justify-between gap-2 my-1 phone2:flex-col phone2:items-center">
+      <img src="/box.png" class="w-[60px] md:w-[80px]" alt="Empty cart">                
+      <h2 class="font-bold text-[15px] text-gray-500 my-2">Your cart is empty. Sign in to view items you've previously added.</h2>
+    </div>
+  <%}%>
+</div>
+</div>
+
+</div>
+
+</div>
+
+        <div class="lg:basis-1/3 flex flex-col items-center">
+          <div class="w-full p-3 bg-white rounded-md my-3 border border-gray-200  ">
+            <h1 class="font-bold my-2 text-[17px]">Order Summery</h1>
+            <div class="my-3 flex justify-between text-[13px] ">
+                <p>Subtotal (<span id="Item-length"><%= data.length%>)</span> item(s)</p>
+                <p class="font-bold">
+                    <i class="fa-solid fa-naira-sign"></i>
+                    <% const subtotal = data.reduce((acc, item) => acc + (item.price * item.qnt), 0); %>
+                    <span id="item-amount"><%= subtotal.toLocaleString() %></span>
+                </p>
+            </div>
+            <div class="my-3 flex justify-between text-[13px] ">
+                <p>Fees</p>
+                <p class="font-bold">
+                    <i class="fa-solid fa-naira-sign"></i>
+                    <span>0.00</span>
+                </p>
+            </div>
+            <div class="my-3 flex justify-between border-t-1 border-gray-600  text-[13px]">
+                <p>Estimated Total</p>
+                <p class="font-bold">
+                    <i class="fa-solid fa-naira-sign"></i>
+                    <span id="estimated-total"><%= subtotal.toLocaleString() %></span>
+                </p>
+            </div>
+            <button id="whatsappBtn" class="w-full bg-blue-600 cursor-pointer  text-white rounded-md p-2 flex justify-center items-center hover:bg-blue-500 my-2 gap-3"><i class="fa-brands fa-whatsapp"></i></i>Send Item(s)</button>
+        <p class="text-gray-500 text-center  text-[13px]">Chat with us on WhatsApp</p>
+          </div>
+
+          <div class="w-full p-3 bg-white rounded-md my-3 border border-gray-200 phone2:w-[410px] md:w-full">
+            <h2 class="font-bold my-2 text-[15px]">Need help?</h2>
+                <div class="flex gap-3 items-center">
+                    <div class="px-2 py-1 rounded-full bg-gray-200">
+                    <i class="bi bi-whatsapp"></i>
+
+                    </div>
+                    <p class="text-[13px]">+234-812-575-4371</p>
+                </div>
+         </div>
+        </div>
+        
+    </div>
+   </div>
+
+
+   <%- include('../partial/footer') %>
+
+    <script src="/cart.js"></script>
+</body>
+</html>

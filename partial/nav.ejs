@@ -1,0 +1,138 @@
+    <nav
+      class=" relative bg-[#040d17] flex justify-center items-center text-white py-2 px-4"
+    >
+        <div class=" menu-body hidden absolute bg-[#040d17] z-11 text-white p-5 top-0 w-full ">
+             <div class="flex justify-between items-center text-white my-3">
+                <div></div>
+                <div class="close-menu"><i class="fa-solid fa-x"></i></div>
+            </div> 
+
+           <a href="/android-stereo/" class="action:bg-gray-200">
+            <div class="border-l-3 border-[#040d17] p-2 font-bold my-2 hover:border-gray-300 flex gap-4">
+                <div class="w-7">
+                <i class="bi bi-house"></i>
+
+                </div>
+                <p>Home</p>
+
+            </div>
+             </a> 
+             <a href="/android-stereo/product-page" class="action:bg-gray-200">
+            <div class="border-l-3 border-[#040d17] p-2 font-bold my-2  hover:border-gray-500 flex gap-4">
+                <div class="w-7">
+                <i class="fa-solid fa-shop"></i>
+
+                </div>
+                <p>Products</p>
+
+            </div>
+             </a>   
+             <a href="/android-stereo/contact-page" class="action:bg-gray-200">
+            <div class="border-l-3 border-[#040d17] p-2 font-bold my-2  hover:border-gray-500 flex gap-4">
+                <div class="w-7">
+                <i class="bi bi-person-lines-fill"></i>
+
+                </div>
+                <p>Contact Us</p>
+
+            </div>
+             </a>       
+      </div>
+
+      <div class="  w-full lg:w-[1024px] flex justify-between items-center">
+
+        <div class="sm:hidden menu-icon">
+            <i class="fa-solid fa-bars"></i>
+
+        </div>
+
+         <% if (typeof user !== 'undefined' && user && user.length > 0) { %>
+        <div class="w-15 sm:w-20 lg:w-30 " id="user-data" data-user='<%- JSON.stringify(user[0] || null) %>' >
+          <img class="w-full h-full" src="/carlogo2.png" alt="" />
+        </div>
+            <%}else{%>
+
+        <div class="w-15 sm:w-20 lg:w-30 " id="user-data" data-user='undefind' >
+          <img class="w-full h-full" src="/carlogo2.png" alt="" />
+        </div>
+              <%}%>
+
+        <div class=" hidden sm:block flex gap-5">
+          <a href="/android-stereo/" class="relative font-bold group mx-2">Home
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full mt-2"></span>
+          </a>
+          <a href="/android-stereo/contact-page" class="relative group font-bold mx-2">Contact us
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-white mt-2"></span>
+          </a>
+          <a href="/android-stereo/product-page" class="relative group font-bold mx-2">Product
+            <span class="absolute left-0 bottom-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-white mt-2"></span>
+
+          </a>
+
+        </div>
+
+       <!-- Fixed: Changed w-[100px] to auto-sizing w-auto with flex-row -->
+<div class="flex flex-row items-center gap-3 w-auto text-[10px]">
+
+  <!-- ACCOUNT / LOGIN ICON CONTAINER -->
+  <div class="relative rounded-full p-1 cursor-pointer hover:bg-gray-700">
+    <% if (typeof user !== 'undefined' && user && user.length > 0) { %>
+      <div class="p-1 font-bold text-lg border border-white rounded-full w-9 h-9 flex justify-center items-center account-icon">
+        <%= user[0].userName[0] %>
+      </div>
+    <% } else { %>
+      <div class="p-1 font-bold text-lg border border-white rounded-full w-9 h-9 flex justify-center items-center">
+        <a href="/android-stereo/google" class="flex justify-center items-center w-full h-full">
+          <i class="bi bi-box-arrow-in-right"></i>
+        </a>
+      </div>
+    <% } %>
+
+    <!-- DROPDOWN MENU -->
+    <div class="absolute hidden z-50 account-body -right-12 top-12">
+      <div class="w-60 rounded-xl text-white p-2 border border-gray-500 bg-[#040d17] shadow-xl">
+        <% if (typeof user !== 'undefined' && user && user.length > 0) { %>
+          <div class="p-1 flex my-1 items-center cursor-pointer">
+            <div class="flex justify-center items-center bg-gray-500 text-black h-7 w-7 text-[12px] font-bold rounded-full overflow-hidden shrink-0">
+              <img src="<%= user[0].thumbNail %>" class="w-full h-full object-cover" alt="User Profile">
+            </div>
+            <div class="mx-3 truncate">
+              <p class="font-bold"><%= user[0].userName %></p>
+              <p class="text-xs text-gray-400 truncate">ekenebasil21@gmail.com</p>
+            </div>
+          </div>
+          <div class="w-full h-[1px] bg-gray-700 my-1"></div>
+        <% } %>
+
+        <div class="p-2 flex items-center cursor-pointer hover:bg-gray-800 rounded-lg">
+          <i class="fa-regular fa-clock"></i>
+          <span class="ml-3">History</span>
+        </div>
+
+        <div class="w-full h-[1px] bg-gray-700 my-1"></div>
+
+        <a href="/android-stereo/sign-out" class="block">
+          <div class="p-2 flex items-center cursor-pointer hover:bg-gray-800 rounded-lg text-red-400">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="ml-3">Sign out</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART LINK ICON CONTAINER -->
+  <div class="flex items-center justify-center">
+    <a href="/android-stereo/cart-page" class="notifi-icon rounded-full p-2 flex justify-center items-center hover:bg-gray-700 transition-colors">
+      <i class="fa-solid fa-cart-arrow-down text-xl"></i>
+    </a>
+  </div>
+
+</div>
+        
+      </div>
+
+
+
+    </nav>
+
