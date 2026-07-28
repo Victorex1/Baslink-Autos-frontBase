@@ -73,10 +73,6 @@ exports.productPage = async (req, res) => {
   try {
     const userCheck = req.user;
 
-    
-
-
-
     // Fetch all product records from your database model instance
     const result = await fetch(`${superbaseUrl}products`, {
       method: "GET",

@@ -76,8 +76,7 @@ document.querySelector("#Add-Cart").addEventListener("click", async function (ev
             id: id,
             google_id:'',
           };
-          let pendingCart =
-            JSON.parse(localStorage.getItem("pendingCart")) || [];
+          let pendingCart = JSON.parse(localStorage.getItem("pendingCart")) || [];
 
           // 2. Add the item (or update quantity if already there)
           const existingIndex = pendingCart.findIndex(
