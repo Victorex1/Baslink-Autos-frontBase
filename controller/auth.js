@@ -154,7 +154,7 @@ exports.ProductDetails = async (req, res) => {
     console.error(error);
     res.status(500).json({
       success: false,
-      message: "Mongoose storage insertion timeout failure.",
+      message: "Superbase storage insertion timeout failure.",
     });
   }
 };

@@ -138,7 +138,7 @@
             </div>
             <% if (typeof user !== 'undefined' && user) { %>
               <button   id="Add-Cart" data-id="<%= data.id %>"   data-product='<%= JSON.stringify(user[0]) %>'
-                class="w-full bg-blue-500 text-white hover:bg-blue-400 rounded-md flex justify-center gap-2 items-center text-xs cursor-pointer p-1 my-2 transition-all disabled:opacity-75 disabled:cursor-not-allowed">
+                class="w-full bg-blue-500 text-white hover:bg-blue-400 rounded-md flex justify-center gap-2 items-center text-xs cursor-pointer px-2  p-1 my-2 transition-all disabled:opacity-75 disabled:cursor-not-allowed">
                 <!-- Loading Spinner (hidden by default) -->
                 <svg id="cart-spinner"  class="hidden animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -154,7 +154,7 @@
         
             <%}else{%>
              <button   id="Add-Cart" data-id="<%= data.id %>"   data-product='undefined'
-                class="w-full bg-blue-500 text-white hover:bg-blue-400 rounded-md flex justify-center gap-2 items-center text-xs cursor-pointer p-1 my-2 transition-all disabled:opacity-75 disabled:cursor-not-allowed">
+                class="w-full bg-blue-500 text-white hover:bg-blue-400 rounded-md flex justify-center gap-2 items-center text-xs cursor-pointer px-2  p-1 my-2 transition-all disabled:opacity-75 disabled:cursor-not-allowed">
                 <!-- Loading Spinner (hidden by default) -->
                 <svg id="cart-spinner"  class="hidden animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -169,7 +169,7 @@
               </button>
               <%}%>
             <a href="" id="whatsappItem"
-              class=" w-full border border-blue-500 rounded-md hover:bg-gray-300 flex justify-center gap-2 items-center text-xs cursor-pointer p-1 my-2"
+              class=" w-full border border-blue-500 rounded-md hover:bg-gray-300 flex justify-center gap-2 items-center text-xs cursor-pointer p-1 px-2 my-2"
             ><i class="bi bi-whatsapp"></i>
               Buy now
           </a>
